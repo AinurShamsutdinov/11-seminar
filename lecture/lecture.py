@@ -313,7 +313,7 @@ class StrPro(str):
 
     def __rmul__(self, other: str):
         words = other.split()
-        result = self.join(words)
+        result = self.join(words) + ' test '
         return StrPro(result)
 
 
