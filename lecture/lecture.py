@@ -230,34 +230,80 @@
 # print(repr(user))
 # print(f'{user = }')
 ########################################################################################################
-class User:
+# class User:
+#
+#     def __init__(self, name: str, equipment: list = None):
+#         self.name = name
+#         self.equipment = equipment if equipment is not None else []
+#         self.life = 3
+#
+#     def __str__(self):
+#         eq = 'оборудованием: ' + ', '.join(self.equipment) if self.equipment else 'пустыми руками'
+#         return f'Перед нами {self.name} с {eq}. Количество жизней - {self.life}'
+#
+#     def __repr__(self):
+#         return f'User({self.name}, {self.equipment})'
+#
+#
+# u_1 = User('Спенглер')
+# u_2 = User('Венкман', ['протонный ускоритель', 'ловушка'])
+# u_3 = User(equipment=['ловушка', 'прибор ночного видения'], name='Стэнц')
+# ghostbusters = [u_1, u_2, u_3]
+#
+# print(ghostbusters)
+# print(f'{ghostbusters}')
+# print(repr(ghostbusters))
+# print(f'{ghostbusters = }')
+#
+# print(*ghostbusters, sep='\n')
+########################################################################################################
+# class Vector:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __repr__(self):
+#         return f'Vector({self.x}, {self.y})'
+#
+#     def __add__(self, other):
+#         x = self.x + other.x
+#         y = self.y + other.y
+#         return Vector(x, y)
+#
+#
+# a = Vector(2, 4)
+# b = Vector(3, 7)
+# c = a + b
+# print(f'{a = }\t{b = }\t{c = }')
+########################################################################################################
+from random import choices
 
-    def __init__(self, name: str, equipment: list = None):
-        self.name = name
-        self.equipment = equipment if equipment is not None else []
-        self.life = 3
+
+class Closet:
+    CLOTHES = ('брюки', 'рубашка', 'костюм', 'футболка', 'перчатки', 'носки', 'туфли')
+
+    def __init__(self, count: int, storeroom=None):
+        self.count = count
+        if storeroom is None:
+            self.storeroom = choices(self.CLOTHES, k=count)
+        else:
+            self.storeroom = storeroom
 
     def __str__(self):
-        eq = 'оборудованием: ' + ', '.join(self.equipment) if self.equipment else 'пустыми руками'
-        return f'Перед нами {self.name} с {eq}. Количество жизней - {self.life}'
+        names = ', '.join(self.storeroom)
+        return f'Осталось вещей в шкафу {self.count}:\n{names}'
 
-    def __repr__(self):
-        return f'User({self.name}, {self.equipment})'
+    def __rshift__(self, other):
+        shift = self.count if other > self.count else other
+        self.count -= shift
+        return Closet(self.count, choices(self.storeroom, k=self.count))
 
 
-u_1 = User('Спенглер')
-u_2 = User('Венкман', ['протонный ускоритель', 'ловушка'])
-u_3 = User(equipment=['ловушка', 'прибор ночного видения'], name='Стэнц')
-ghostbusters = [u_1, u_2, u_3]
-
-print(ghostbusters)
-print(f'{ghostbusters}')
-print(repr(ghostbusters))
-print(f'{ghostbusters = }')
-
-print(*ghostbusters, sep='\n')
-########################################################################################################
-########################################################################################################
+storeroom = Closet(10)
+print(storeroom)
+for _ in range(4):
+    storeroom = storeroom >> 3
+    print(storeroom)
 ########################################################################################################
 ########################################################################################################
 ########################################################################################################
