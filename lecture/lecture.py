@@ -177,24 +177,53 @@
 # user = User('Спенглер')
 # print(user)
 ########################################################################################################
+# class User:
+#
+#     def __init__(self, name: str):
+#         """Added the name parameter."""
+#         self.name = name
+#
+#     def simple_method(self):
+#         """Example of a simple method."""
+#         self.name.capitalize()
+#
+#     def __repr__(self):
+#         return f'User({self.name}) test'
+#
+#
+# user = User('Спенглер')
+# print(user)
+########################################################################################################
+# class User:
+#
+#     def __init__(self, name: str, equipment: list = None):
+#         self.name = name
+#         self.equipment = equipment if equipment is not None else []
+#         self.life = 3
+#
+#     def __repr__(self):
+#         return f'User({self.name}, {self.equipment})'
+#
+#
+# user = User('Венкман', ['протонный ускоритель', 'ловушка'])
+# print(user)
+########################################################################################################
 class User:
 
-    def __init__(self, name: str):
-        """Added the name parameter."""
+    def __init__(self, name: str, equipment: list = None):
         self.name = name
-
-    def simple_method(self):
-        """Example of a simple method."""
-        self.name.capitalize()
+        self.equipment = equipment if equipment is not None else []
+        self.life = 3
+        eq = 'оборудованием: ' + ', '.join(self.equipment) if self.equipment else 'пустыми руками'
+        return f'Перед нами {self.name} с {eq}. Количество жизней - {self.life}'
 
     def __repr__(self):
-        return f'User({self.name})'
+        return f'User({self.name}, {self.equipment})'
 
 
-user = User('Спенглер')
+user = User('Венкман', ['протонный ускоритель', 'ловушка'])
 print(user)
-########################################################################################################
-########################################################################################################
+def __str__(self):
 ########################################################################################################
 ########################################################################################################
 ########################################################################################################
