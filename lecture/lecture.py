@@ -384,50 +384,182 @@
 # print(f'{one == four  = }')
 # print(f'{one != one   = }')
 ########################################################################################################
-from math import sqrt
-
-
-class Triangle:
-
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
-
-    def __str__(self):
-        return f'Треугольник со сторонами: {self.a}, {self.b}, {self.c}'
+# from math import sqrt
+#
+#
+# class Triangle:
+#
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def __str__(self):
+#         return f'Треугольник со сторонами: {self.a}, {self.b}, {self.c}'
+#
+#     def __repr__(self):
+#         return f'Triangle({self.a}, {self.b}, {self.c})'
+#
+#     def __eq__(self, other):
+#         first = sorted((self.a, self.b, self.c))
+#         second = sorted((other.a, other.b, other.c))
+#         return first == second
+#
+#     def area(self):
+#         p = (self.a + self.b + self.c) / 2
+#         _area = sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
+#         return _area
+#
+#     def __lt__(self, other):
+#         return self.area() < other.area()
+#
+#
+# one = Triangle(3, 4, 5)
+# two = Triangle(5, 5, 5)
+# print(f'{one} имеет площадь {one.area():.3f} у.е.2')
+# print(f'{two} имеет площадь {two.area():.3f} у.е.2')
+# print(f'{one > two  = }\n{one < two  = }')
+# data = [Triangle(3, 4, 5), Triangle(6, 2, 5), Triangle(4, 4, 4), Triangle(3, 5, 3)]
+# result = sorted(data)
+# print(result)
+# print(', '.join(f'{item.area():.3f}' for item in result))
+########################################################################################################
+# from math import sqrt
+#
+#
+# class Triangle:
+#
+#     def __init__(self, a, b, c):
+#         self._a = a
+#         self._b = b
+#         self._c = c
+#
+#     def __str__(self):
+#         return f'Треугольник со сторонами: {self._a}, {self._b}, {self._c}'
+#
+#     def __repr__(self):
+#         return f'Triangle({self._a}, {self._b}, {self._c})'
+#
+#     def __eq__(self, other):
+#         first = sorted((self._a, self._b, self._c))
+#         second = sorted((other._a, other._b, other._c))
+#         return first == second
+#
+#     def area(self):
+#         p = (self._a + self._b + self._c) / 2
+#         _area = sqrt(p * (p - self._a) * (p - self._b) * (p - self._c))
+#         return _area
+#
+#     def __lt__(self, other):
+#         return self.area() < other.area()
+#
+#     def __hash__(self):
+#         return hash((self._a, self._b, self._c))
+#
+#
+# triangle_set = {Triangle(3, 4, 5), Triangle(6, 2, 5), Triangle(4, 4, 4), Triangle(3, 5, 3)}
+# print(triangle_set)
+# print(', '.join(f'{hash(item)}' for item in triangle_set))
+########################################################################################################
+# class Vector:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __repr__(self):
+#         return f'Vector({self.x}, {self.y})'
+#
+#     def __add__(self, other):
+#         x = self.x + other.x
+#         y = self.y + other.y
+#         return Vector(x, y)
+#
+#
+# a = Vector(2, 4)
+########################################################################################################
+# class Vector:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __repr__(self):
+#         return f'Vector({self.x}, {self.y})'
+#
+#     def __add__(self, other):
+#         x = self.x + other.x
+#         y = self.y + other.y
+#         return Vector(x, y)
+#
+#     def __getattribute__(self, item):
+#         if item == 'z':
+#             raise AttributeError('У нас вектор на плоскости, а не в пространстве')
+#         return object.__getattribute__(self, item)
+#
+#
+# a = Vector(2, 4)
+# # print(a.z)      # AttributeError: У нас вектор на плоскости, а не в пространстве
+# print(f'{a = }')
+########################################################################################################
+# class Vector:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __repr__(self):
+#         return f'Vector({self.x}, {self.y})'
+#
+#     def __add__(self, other):
+#         x = self.x + other.x
+#         y = self.y + other.y
+#         return Vector(x, y)
+#
+#     def __getattribute__(self, item):
+#         if item == 'z':
+#             raise AttributeError('У нас вектор на плоскости, а не в пространстве')
+#         return object.__getattribute__(self, item)
+#
+#     def __setattr__(self, key, value):
+#         if key == 'z':
+#             raise AttributeError('У нас вектор на плоскости, а не в пространстве')
+#         return object.__setattr__(self, key, value)
+#
+#
+# a = Vector(2, 4)
+# # print(a.z) # AttributeError: У нас вектор на плоскости, а не в пространстве
+# print(f'{a = }')
+# # a.z = 73 # AttributeError: У нас вектор на плоскости, а не в пространстве
+# a.x = 3
+# print(f'{a = }')
+########################################################################################################
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     def __repr__(self):
-        return f'Triangle({self.a}, {self.b}, {self.c})'
+        return f'Vector({self.x}, {self.y})'
 
-    def __eq__(self, other):
-        first = sorted((self.a, self.b, self.c))
-        second = sorted((other.a, other.b, other.c))
-        return first == second
+    def __add__(self, other):
+        x = self.x + other.x
+        y = self.y + other.y
+        return Vector(x, y)
 
-    def area(self):
-        p = (self.a + self.b + self.c) / 2
-        _area = sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
-        return _area
+    def __getattribute__(self, item):
+        if item == 'z':
+            raise AttributeError('У нас вектор на плоскости, а не в пространстве')
+        return object.__getattribute__(self, item)
 
-    def __lt__(self, other):
-        return self.area() < other.area()
+    def __setattr__(self, key, value):
+        if key == 'z':
+            raise AttributeError('У нас вектор на плоскости, а не в пространстве')
+        return object.__setattr__(self, key, value)
+
+    def __getattr__(self, item):
+        return None
 
 
-one = Triangle(3, 4, 5)
-two = Triangle(5, 5, 5)
-print(f'{one} имеет площадь {one.area():.3f} у.е.2')
-print(f'{two} имеет площадь {two.area():.3f} у.е.2')
-print(f'{one > two  = }\n{one < two  = }')
-data = [Triangle(3, 4, 5), Triangle(6, 2, 5), Triangle(4, 4, 4), Triangle(3, 5, 3)]
-result = sorted(data)
-print(result)
-print(', '.join(f'{item.area():.3f}' for item in result))
-########################################################################################################
-########################################################################################################
-########################################################################################################
-########################################################################################################
-########################################################################################################
+a = Vector(2, 4)
+print(a.z)  # None print(f'{a = }')
 ########################################################################################################
 ########################################################################################################
 ########################################################################################################
