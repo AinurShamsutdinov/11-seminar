@@ -5,6 +5,7 @@
 
 
 class Archive:
+    """Class which save two data integer and string, and archive will all created instances of the class"""
     _old_instance = None
     __number = 0
     __some_string = ''
@@ -12,6 +13,8 @@ class Archive:
     __lst_some_strings = list()
 
     def __new__(cls, *args):
+        """Create a new instance with two lists of old instances of the class"""
+
         instance = super().__new__(cls)
         instance.__number = args[0]
         instance.__some_string = args[1]
@@ -29,22 +32,24 @@ class Archive:
         cls._old_instance = instance
         return instance
 
-    def __str__(self):
-        return self.__number, self.__some_string
-
-    def __format__(self, format_spec):
-        return 'number = ' + str(self.__number) + ', string = +' + self.__some_string
-
     def get_lst_numbers(self):
+        """Get list of old integers"""
+
         return self.__lst_numbers
 
     def get_lst_some_strings(self):
+        """Get list of old strings"""
+
         return self.__lst_some_strings
 
     def get_number(self):
+        """Get current integer number"""
+
         return self.__number
 
     def get_some_string(self):
+        """Get current string item"""
+
         return self.__some_string
 
 
