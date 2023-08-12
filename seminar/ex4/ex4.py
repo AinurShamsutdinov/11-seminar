@@ -33,10 +33,10 @@ class Archive:
         return instance
 
     def __str__(self):
-        return None
+        return f'Archive class with number = {self.__number} and string = {self.__some_string}'
 
     def __repr__(self):
-        return None
+        return f'Archive({self.__number}, {self.__some_string})'
 
     def get_lst_numbers(self):
         """Get list of old integers"""
@@ -64,8 +64,5 @@ archive = Archive(20, '22')
 archive = Archive(30, '33')
 archive = Archive(40, '44')
 
+print(archive)
 print(f'{archive = }', type(archive))
-print(f'{archive.get_number() = }')
-print(f'{archive.get_some_string() = }')
-print(f'{archive.get_lst_numbers() = }')
-print(f'{archive.get_lst_some_strings() = }')
