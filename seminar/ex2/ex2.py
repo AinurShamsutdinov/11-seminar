@@ -18,21 +18,22 @@ class Archive:
         if cls._old_instance is None:
             cls._old_instance = instance
         elif cls._old_instance is not None:
-            if cls._old_instance.__lst_numbers is not None:
+            if cls._old_instance is not None:
                 instance.__lst_numbers = list(cls._old_instance.__lst_numbers)
-            else:
-                instance.__lst_numbers = list()
-            if cls._old_instance.__lst_some_strings is not None:
+                instance.__lst_numbers.append(cls._old_instance.__number)
+            if cls._old_instance is not None:
                 instance.__lst_some_strings = list(cls._old_instance.__lst_some_strings)
+                instance.__lst_some_strings.append(cls._old_instance.__some_string)
             else:
                 instance.__lst_some_strings = list()
-            instance.__lst_numbers.append(cls._old_instance.__number)
-            instance.__lst_some_strings.append(cls._old_instance.__some_string)
-            cls.__old_instance = instance
+        cls._old_instance = instance
         return instance
 
     def __str__(self):
         return self.__number, self.__some_string
+
+    def __format__(self, format_spec):
+        return 'number = ' + str(self.__number) + ', string = +' + self.__some_string
 
     def get_lst_numbers(self):
         return self.__lst_numbers
@@ -44,7 +45,7 @@ class Archive:
         return self.__number
 
     def get_some_string(self):
-        return self.__lst_some_strings
+        return self.__some_string
 
 
 archive = Archive(10, '11')
@@ -53,5 +54,7 @@ archive = Archive(30, '33')
 archive = Archive(40, '44')
 
 print(f'{archive = }', type(archive))
+print(f'{archive.get_number() = }')
+print(f'{archive.get_some_string() = }')
 print(f'{archive.get_lst_numbers() = }')
 print(f'{archive.get_lst_some_strings() = }')
