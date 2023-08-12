@@ -14,7 +14,6 @@ class Archive:
 
     def __new__(cls, *args):
         """Create a new instance with two lists of old instances of the class"""
-
         instance = super().__new__(cls)
         instance.__number = args[0]
         instance.__some_string = args[1]
